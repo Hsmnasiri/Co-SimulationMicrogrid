@@ -1,0 +1,23 @@
+{
+  "title": "IEEE‑33 Bus Voltages",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Bus Voltages (p.u.)",
+      "datasource": "InfluxDB",
+      "targets": [
+        {
+          "measurement": "bus_voltage",
+          "groupBy": [
+            { "type": "tag", "params": ["bus"] },
+            { "type": "time", "params": ["1h"] }
+          ],
+          "select": [[{ "type": "field", "params": ["vm_pu"] }]],
+          "alias": "bus $tag_bus"
+        }
+      ],
+      "lines": true,
+      "linewidth": 1
+    }
+  ]
+}

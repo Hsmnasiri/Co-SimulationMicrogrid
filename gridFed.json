@@ -1,0 +1,15 @@
+{
+  "name": "gridFed",
+  "coreType": "zmq",
+  "coreInit": "--federates=1",
+  "publications": [
+    { "key": "bus17_P", "type": "double", "unit": "MW" },
+    { "key": "bus17_Q", "type": "double", "unit": "Mvar" }
+  ],
+  "subscriptions": [
+    { "key": "inv17_Pcmd", "type": "double", "unit": "MW" },
+    { "key": "inv17_Qcmd", "type": "double", "unit": "Mvar" }
+  ],
+  "timeDelta": 1.0
+}
+

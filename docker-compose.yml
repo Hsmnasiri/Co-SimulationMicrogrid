@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  grid-core:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["python", "ieee33_sim.py"]
+    depends_on:
+      - influx
+    networks:
+      - microgrid
+
+  influx:
+    image: influxdb:1.8
+    environment:
+      - INFLUXDB_DB=grid
+    ports:
+      - "8086:8086"
+    networks:
+      - microgrid
+
+  grafana:
+    image: grafana/grafana:10.1.2
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influx
+    networks:
+      - microgrid
+
+networks:
+  microgrid:
